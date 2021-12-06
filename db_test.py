@@ -32,7 +32,7 @@ def test_min_value_of_column(db_start_stop):
 @pytest.mark.aw2012
 def test_max_value_of_column(db_start_stop):
     """ Verifies max value of column 'StateProvinceID' in table '[Person].[Address]'.
-    Expected result: 181.
+    Expected result: 183.
     """
     print('\n', test_max_value_of_column.__doc__)
     column_max = get_max_value_of_column(cursor, table_name='[Person].[Address]', column_name='StateProvinceID')
