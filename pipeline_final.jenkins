@@ -1,0 +1,36 @@
+pipeline {
+agent any
+environment {
+    PATH = "/var/jenkins_home/.local/bin:${env.PATH}"
+    PAT  = credentials('306b5e57-0aad-43ef-91c6-215c3e51ba37')
+}
+
+stages {
+    stage('Build') {
+        steps {
+            sh 'pip install -r requirements.txt'
+
+        }
+    }
+
+    stage ('Test'){
+        steps {
+            echo 'Run tests from develop branch...'
+            sh 'pytest -v -s -m aw2012'
+        }
+    }
+
+    stage ('Deploy'){
+        steps {
+            echo 'All tests passed, merge into the master branch'
+            sh 'git config --global user.email maveric315@gmail.com'
+            sh 'git config --global user.name maveric315'
+            sh 'git fetch origin'
+            sh 'git checkout master'
+            sh 'git merge origin/develop'
+            sh 'git push https://$PAT_PSW@github.com/maveric315/dqe_exercises.git  master'
+        }
+    }
+
+}
+}
