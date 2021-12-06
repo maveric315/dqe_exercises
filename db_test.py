@@ -36,7 +36,7 @@ def test_max_value_of_column(db_start_stop):
     """
     print('\n', test_max_value_of_column.__doc__)
     column_max = get_max_value_of_column(cursor, table_name='[Person].[Address]', column_name='StateProvinceID')
-    assert column_max == 183, "The maximal value of column 'StateProvinceID' in table '[Person].[Address]' " \
+    assert column_max == 181, "The maximal value of column 'StateProvinceID' in table '[Person].[Address]' " \
                               "is different from the expected."
 
 
